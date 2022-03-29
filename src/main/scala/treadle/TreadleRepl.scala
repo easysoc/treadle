@@ -1113,7 +1113,7 @@ class TreadleRepl(initialAnnotations: AnnotationSeq) {
       new Command("info") {
         def usage: (String, String) = ("info", "show information about the circuit")
         def run(args: Array[String]): Unit = {
-          console.println(engine.getInfoString)
+          console.println(currentTreadleTester.reportString)
         }
       },
       new Command("walltime") {
@@ -1272,12 +1272,12 @@ class TreadleRepl(initialAnnotations: AnnotationSeq) {
           }
         }
         def run(args: Array[String]): Unit = {
-          if (args.length < 3) {
+          if (args.length < 1) {
             //            error("at least one symbol needed")
             None
           } else {
-            val cycleTime = args(1).toInt
-            val symbolNames = args.tail.tail
+//            val cycleTime = args(0).toInt
+            val symbolNames = args
             val numSymbols = symbolNames.length
             val symbols: Array[Symbol] = new Array[Symbol](numSymbols)
             symbolNames.zipWithIndex.foreach { case (symbolName, counter) =>
@@ -1289,7 +1289,7 @@ class TreadleRepl(initialAnnotations: AnnotationSeq) {
             }
 
             val waveformValues: WaveformValues =
-              engine.dataStore.getWaveformValues(symbols, cycleTime, 4)
+              engine.dataStore.getWaveformValues(symbols)
 
             console.println(waveformValues.toString)
             console.println(pretty(render(waveformValues.toJson)))

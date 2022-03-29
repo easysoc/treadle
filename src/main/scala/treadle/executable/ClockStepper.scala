@@ -142,7 +142,9 @@ case class SimpleSingleClockStepper(
 
       wallTime.incrementTime(remainingIncrement)
 
+      dataStore.saveData(wallTime.currentTime)
       raiseClock()
+      dataStore.saveData(wallTime.currentTime)
 
       lowerClock()
 

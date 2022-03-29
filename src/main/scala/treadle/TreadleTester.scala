@@ -404,7 +404,7 @@ class TreadleTester(annotationSeq: AnnotationSeq) {
       new Array[Symbol](numSymbols)
     }
 
-    if (symbolNames.length == 0) {
+    if (symbolNames.length != 0) {
       symbolNames.zipWithIndex.foreach { case (symbolName, counter) =>
         assert(
           engine.symbolTable.contains(symbolName),

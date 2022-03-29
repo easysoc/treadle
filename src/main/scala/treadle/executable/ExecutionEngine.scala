@@ -219,7 +219,7 @@ class ExecutionEngine(
       scheduler.executeCombinationalAssigns()
 
       // save data state under roll back buffers if they are being used
-      dataStore.saveData(wallTime.currentTime)
+//      dataStore.saveData(wallTime.currentTime)
 
       pLastStopException match {
         case Some(exception) =>
